@@ -1,45 +1,10 @@
-// new Swiper('.Proof__slider', {
-//     breakpoints: {
-//         320: {
-//             slidesPerView: 1,
-//         },
-//         1025: {
-//             slidesPerView: 3
-//         }
-//     },
-//     navigation: {
-//         nextEl: '.swiper-button-next',
-//         prevEl: '.swiper-button-prev',
-//     },
-//     loop: true,
-//     spaceBetween: 30,
-// });
-
-function Details() {
-    $('.Form__popup-details').toggleClass('Active');
-    $('.Form__popup').toggleClass('Active');
-};
-function flavor() {
-    $('.Form__popup-flavor-block').toggleClass('Active');
-    $('.Form__popup-flavor').toggleClass('Active');
-};
-function Click() {
-    $('.Form').addClass('Active');
-    $('.footer__block').addClass('Active');
-    $('body').addClass('Active');
-};
-function exit() {
-    $('.Form').removeClass('Active');
-    $('.footer__block').removeClass('Active');
-    $('body').removeClass('Active');
-};
-
 
 //Калькулятор
-const time = document.getElementsByClassName('.ChooseHookahs__left-time');
+const time = document.querySelector('.ChooseHookahs__left-time');
 const checkBoxs = document.querySelectorAll('.ChooseHookahs__colum-checkbox');
-const range = document.getElementById('slider');
-const price = document.getElementsByClassName('.ChooseHookahs__rigth-price');
+const range = document.querySelector('#slider');
+const price = document.querySelector('.ChooseHookahs__rigth-price');
+console.log(price)
 const radios = [
     {
         name: '3 hookahs',
@@ -75,7 +40,40 @@ const takeActiveRadio = currentActive => {
     console.log(currentPrice);
 };
 
-// const Time = () => {
-//     time.inerrHTML = ` ${range.value} hour`;
-// };
-// Time();
+
+new Swiper('.Proof__slider', {
+    breakpoints: {
+        320: {
+            slidesPerView: 1,
+        },
+        1025: {
+            slidesPerView: 3
+        }
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    loop: true,
+    spaceBetween: 30,
+});
+
+function Details() {
+    $('.Form__popup-details').toggleClass('Active');
+    $('.Form__popup').toggleClass('Active');
+};
+function flavor() {
+    $('.Form__popup-flavor-block').toggleClass('Active');
+    $('.Form__popup-flavor').toggleClass('Active');
+};
+function Click() {
+    $('.Form').addClass('Active');
+    $('.footer__block').addClass('Active');
+    $('body').addClass('Active');
+};
+function exit() {
+    $('.Form').removeClass('Active');
+    $('.footer__block').removeClass('Active');
+    $('body').removeClass('Active');
+};
+
