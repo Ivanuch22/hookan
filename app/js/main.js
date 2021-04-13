@@ -43,6 +43,7 @@ const takeActiveRadio = currentActive => {
     console.log(currentPrice);
 };
 
+//Swiper
 
 new Swiper('.Proof__slider', {
     breakpoints: {
