@@ -7,27 +7,34 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 
-  &::before, &:after {
+  &::before,
+  &:after {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
 }
 
-:focus, :active {
+:focus,
+:active {
   outline: none;
 }
 
 a {
-  &:focus, &:active {
+  &:focus,
+  &:active {
     outline: none;
   }
 }
 
-nav, footer, header, aside {
+nav,
+footer,
+header,
+aside {
   display: block;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   width: 100%;
   font-size: 100%;
@@ -38,7 +45,9 @@ html, body {
   -webkit-text-size-adjust: 100%;
 }
 
-input, button, textarea {
+input,
+button,
+textarea {
   font-family: inherit;
 }
 
@@ -58,7 +67,8 @@ button {
 a {
   text-decoration: none;
 
-  &:visited, &:hover {
+  &:visited,
+  &:hover {
     text-decoration: none;
   }
 }
@@ -71,7 +81,12 @@ img {
   vertical-align: top;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: 400;
 }
@@ -372,7 +387,7 @@ body {
   z-index: 1;
 
   &::before {
-    content: '';
+    content: "";
     width: 47.4%;
     position: absolute;
     background-image: url(../images/hookahpic.png);
@@ -639,7 +654,8 @@ body {
   display: flex;
 }
 
-.SecondSection__block-left, .SecondSection__block-right {
+.SecondSection__block-left,
+.SecondSection__block-right {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -749,9 +765,9 @@ body {
     line-height: 24px;
   }
 }
-//!DescriptionSection   
-//!DescriptionSection   
-//!DescriptionSection   
+//!DescriptionSection
+//!DescriptionSection
+//!DescriptionSection
 
 .DescriptionSection__title {
   margin-top: 95px;
@@ -853,7 +869,7 @@ body {
     height: 40px;
     background-color: #9b51e0;
     border-radius: 50%;
-    font-family: 'Montserrat Alternates';
+    font-family: "Montserrat Alternates";
     font-style: normal;
     font-weight: bold;
     color: #fff;
@@ -1287,7 +1303,7 @@ body {
 
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 98px;
     left: 50%;
     bottom: -30px;
@@ -1404,15 +1420,18 @@ body {
   position: relative;
 }
 
-.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+.swiper-button-next,
+.swiper-container-rtl .swiper-button-prev {
   right: 69px;
 }
 
-.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+.swiper-button-prev,
+.swiper-container-rtl .swiper-button-next {
   left: 69px;
 }
 
-.swiper-button-next, .swiper-button-prev {
+.swiper-button-next,
+.swiper-button-prev {
   color: #f2994a;
 }
 
@@ -1433,7 +1452,8 @@ body {
 }
 
 @media (min-width: 1025px) {
-  .swiper-button-next, .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     display: none;
   }
 }
@@ -1536,31 +1556,36 @@ body {
 }
 
 @media (max-width: 620px) {
-  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-container-rtl .swiper-button-prev {
     right: 5px;
   }
 
-  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  .swiper-button-prev,
+  .swiper-container-rtl .swiper-button-next {
     left: 5px;
   }
 }
 
 @media (max-width: 480px) {
-  .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-container-rtl .swiper-button-prev {
     right: 37%;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
   }
 
-  .swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  .swiper-button-prev,
+  .swiper-container-rtl .swiper-button-next {
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
     transform: translateX(-50%);
     left: 37%;
   }
 
-  .swiper-button-next, .swiper-button-prev {
+  .swiper-button-next,
+  .swiper-button-prev {
     top: 120%;
   }
 
@@ -1797,7 +1822,8 @@ body {
     line-height: 24px;
   }
 
-  .Package__card-description, .Package__card-text {
+  .Package__card-description,
+  .Package__card-text {
     font-size: 14px;
     line-height: 140%;
   }
@@ -1824,12 +1850,12 @@ body {
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     left: 0;
     right: 0;
     bottom: 0;
     height: 1px;
-    background-color: #EAEAEA;
+    background-color: #eaeaea;
   }
 }
 
@@ -1984,7 +2010,8 @@ body {
   }
 }
 
-.ChooseHookahs__colum--mobile, .ChooseHookahs__colum-checkbox {
+.ChooseHookahs__colum--mobile,
+.ChooseHookahs__colum-checkbox {
   display: none;
 }
 
@@ -2326,7 +2353,8 @@ body {
 }
 
 .ChooseHookahs__colum-checkbox:checked + {
-  .ChooseHookahs__colum-title::before, .ChooseHookahs__colum-title-mobile::before {
+  .ChooseHookahs__colum-title::before,
+  .ChooseHookahs__colum-title-mobile::before {
     opacity: 1;
   }
 
@@ -2687,7 +2715,8 @@ body {
     + .ChooseHookahs__colum-title {
       color: #f2994a;
 
-      &::after, &::before {
+      &::after,
+      &::before {
         opacity: 0;
       }
     }
@@ -3132,7 +3161,8 @@ body {
   margin-right: 15px;
 }
 
-.Instagram__block-left, .Instagram__block-right {
+.Instagram__block-left,
+.Instagram__block-right {
   max-width: 50%;
   min-width: 50%;
 }
@@ -3615,13 +3645,17 @@ body {
 }
 ///!Form
 input {
-  &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
 }
 
-::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {
+::-webkit-input-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder,
+:-moz-placeholder {
   font-size: 16px;
   line-height: 140%;
   color: #b4b4b4;
@@ -3796,6 +3830,10 @@ input[type="number"] {
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   padding: 13px 20px;
+  display: none;
+}
+.Form__card.Active {
+  display: flex;
 }
 
 .Form__card-img {
@@ -4010,7 +4048,8 @@ input[type="number"] {
   }
 
   .Form__exit-block {
-    &::after, &::before {
+    &::after,
+    &::before {
       height: 6px;
     }
   }
@@ -4053,14 +4092,18 @@ input[type="number"] {
   }
 
   .Form__exit-block {
-    &::after, &::before {
+    &::after,
+    &::before {
       height: 3px;
       top: 5px;
       background-color: #7e7e7e;
     }
   }
 
-  ::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {
+  ::-webkit-input-placeholder,
+  ::-moz-placeholder,
+  :-ms-input-placeholder,
+  :-moz-placeholder {
     font-size: 14px;
     font-weight: normal;
   }
@@ -4090,4 +4133,3 @@ input[type="number"] {
     height: 50px;
   }
 }
-

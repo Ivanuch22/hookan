@@ -4,7 +4,6 @@ const time = document.querySelector('.ChooseHookahs__left-time');
 const checkBoxs = document.querySelectorAll('.ChooseHookahs__colum-checkbox');
 const range = document.querySelector('#slider');
 const price = document.querySelector('.ChooseHookahs__rigth-price');
-console.log(price)
 const radios = [
     {
         name: '3 hookahs',
@@ -21,6 +20,10 @@ const radios = [
     {
         name: '9 hookahs',
         price: 400
+    },
+    {
+        name: '15 hookahs',
+        price: 500
     },
     {
         name: '15 hookahs',
@@ -75,5 +78,9 @@ function exit() {
     $('.Form').removeClass('Active');
     $('.footer__block').removeClass('Active');
     $('body').removeClass('Active');
+    $('.Form__card1').removeClass('Active');
+    $('.Form__card2').removeClass('Active');
+    $('.Form__card3').removeClass('Active');
+
 };
 
