@@ -49,7 +49,7 @@ function images() {
         }),
       ])
     )
-    .pipe(dest("dist/img"));
+    .pipe(dest("root/img"));
 }
 
 function build() {
@@ -61,11 +61,11 @@ function build() {
       "docs/*.html",
     ],
     { base: "docs" }
-  ).pipe(dest("dist"));
+  ).pipe(dest("root"));
 }
 
 function cleanDist() {
-  return del("dist");
+  return del("root");
 }
 
 function watching() {
