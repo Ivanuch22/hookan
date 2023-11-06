@@ -49,7 +49,7 @@ function images() {
         }),
       ])
     )
-    .pipe(dest("root/img"));
+    .pipe(dest("root/images"));
 }
 
 function build() {
