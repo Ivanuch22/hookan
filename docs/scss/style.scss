@@ -14,15 +14,13 @@
   transition: all 0.3s;
   &:before {
     content: "";
-    z-index: 1;
-    left: 0;
-    right: 0;
+    position: absolute;
     top: 0;
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
+    left: 0;
     bottom: 0;
-    position: fixed;
-    background: rgba(0, 0, 0, 0.4);
+    right: 0;
+    background: rgba(0, 0, 0, 0.40);
+    backdrop-filter: blur(10px);
   }
   &__field.textarea {
     height: 90px;
@@ -32,38 +30,44 @@
   &__exit {
     cursor: pointer;
     position: absolute;
-    top: 40px;
-    right: 40px;
     z-index: 234567543;
     background-color: transparent;
     width: 40px;
     height: 40px;
+    top: 39px;
+    right: 28px;
+  }
+  .Form__exit-line{
+    width: 31px;
+    display: block;
+    height: 9px;
+    background: #fff;
+    &:first-child{
+    transform: rotate(45deg);
+
+    }
+    &:last-child{
+    transform: rotate(-45deg);
+    position: relative;
+    top: -9px;
+
+    }
   }
   &__exit-block {
     transition: all 0.3s;
     position: relative;
     height: 1px;
   }
-  &:before {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-    transform: rotate(-45deg);
-    background-color: #fff;
-  }
-  &:after {
-    content: "";
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    height: 10px;
-    transform: rotate(45deg);
-    background-color: #fff;
-  }
+  // &:after {
+  //   content: "";
+  //   position: absolute;
+  //   top: 10px;
+  //   left: 0;
+  //   right: 0;
+  //   height: 10px;
+  //   transform: rotate(45deg);
+  //   background-color: #fff;
+  // }
   &__content {
     z-index: 2;
     position: relative;
@@ -75,6 +79,7 @@
     overflow: auto;
     height: auto;
     width: 594px;
+    max-height: 72%;
   }
   &__title {
     text-align: center;
@@ -119,7 +124,6 @@
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     padding: 13px 20px;
-    display: none;
   }
   &__card.Active {
     display: flex;
@@ -281,9 +285,7 @@
         background-repeat: no-repeat;
       }
     }
-    &__content .Form__exit {
-      display: none;
-    }
+
   }
 }
 
@@ -3079,17 +3081,6 @@ input[type="range"] {
 }
 
 @media (max-width: 786px) {
-  .Form__exit {
-    top: 22px;
-    right: 32px;
-    width: 30px;
-    height: 30px;
-  }
-
-  .Form__exit-block::after,
-  .Form__exit-block::before {
-    height: 6px;
-  }
 
   .Form__title {
     margin-top: 40px;
@@ -3115,18 +3106,8 @@ input[type="range"] {
     padding-bottom: 0;
   }
 
-  .Form__exit {
-    display: none;
-  }
 
-  .Mobile.Form__exit {
-    display: block;
-    z-index: 2384978;
-    width: 15px;
-    height: 15px;
-    top: 20px;
-    right: 10px;
-  }
+
 
   .Form__exit-block::after,
   .Form__exit-block::before {
