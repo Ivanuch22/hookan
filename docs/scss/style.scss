@@ -13,6 +13,15 @@
   width: 20px;
   height: 20px;
 }
+.step1{
+  display: none;
+}
+.step2{
+  display: none;
+}
+.step--active{
+  display: block;
+}
 .Form {
   z-index: -22;
   position: fixed;
@@ -158,7 +167,7 @@ margin-bottom: 25px;
     overflow: hidden;
     height: 70px;
     border-radius: 5px;
-    margin-right: -38px;
+    margin-right: 15px;
   }
   &__card-img img {
     height: 100%;
@@ -202,6 +211,12 @@ margin-bottom: 25px;
         background-size: contain;
         background-position: center center;
         background-repeat: no-repeat;
+      }
+    }
+    .text--active{
+      &::after{
+        transform: rotate(90deg);
+        top: 16%;
       }
     }
     &:before {
@@ -277,10 +292,15 @@ margin-bottom: 25px;
   &__popup-flavor.Active::before {
     transform: rotate(90deg);
   }
-  &__popup-details.Active {
-    top: 0;
-    display: block;
+  &__popup-details{
+    height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease-in;
   }
+  &__popup-details--active{
+    height: 130px;
+  }
+  &
   &__popup-flavor-block {
     display: none;
   }
@@ -346,6 +366,8 @@ margin-bottom: 25px;
   &__logo-block {
     width: 110px;
     margin-top: 30px;
+    position: relative;
+    z-index: 3245;
   }
   &__logo {
     width: 100%;
