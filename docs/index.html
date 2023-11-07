@@ -632,73 +632,141 @@
         </div>
       </div>
       <form action="#" method="get" class="Form__content">
-        </div>
-        <h2 class="Form__title">Leave your contacts</h2>
-        <div class="Form__container">
-          <input
-            type="text"
-            name="name"
-            class="Form__field"
-            placeholder="Your name"
-          />
-          <input
-            type="number"
-            name="number"
-            class="Form__field"
-            placeholder="Your phone"
-          />
-          <h3 class="Form__text text">Your order:</h3>
-          <div class="Form__card Form__card1">
-            <div class="Form__card-img">
-              <img src="images/firstCardImg.jpg" alt="" />
-            </div>
-            <div class="Form__card-text">
-              <h4 class="Form__card-text text">1 hookah</h4>
-              <p class="Form__card-description">3 tobacco filled fruit heads</p>
-            </div>
-            <div class="Form__card-prise">
-              <span class="purpure_color">$75</span>
-            </div>
+        <div onclick="exit()" class="Form__exit">
+          <div class="Form__exit-block">
+            <span class="Form__exit-line"></span>
+            <span class="Form__exit-line"></span>
           </div>
-
-          <div onclick="Details()" class="Form__popup text">Details</div>
-          <div class="Form__popup-details">
+        </div>
+        <div class="step1">
+          <h2 class="Form__title">Step 1/2</h2>
+          <p class="Form__text">Leave your contacts</p>
+          <div class="Form__container">
             <input
               type="text"
-              name="address"
+              name="name"
               class="Form__field"
-              placeholder="Delivery address"
+              placeholder="Your name"
             />
             <input
-              type="datetime"
-              name="datetime"
-              class="Form__field"
-              placeholder="Delivery date and time"
+              type="number"
+              name="number"
+              class="Form__field mb25"
+              placeholder="Your phone"
             />
-            <textarea
-              name="text"
-              class="Form__field textarea"
-              placeholder="Write the hookahs and flavors you want"
-            ></textarea>
+            <div onclick="Details()" class="Form__popup text">
+              <h6 class="text">Details</h6>
+              <div class="Form__popup-details">
+                <input
+                  type="text"
+                  name="address"
+                  class="Form__field"
+                  placeholder="Delivery address"
+                />
+                <input
+                  type="datetime"
+                  name="datetime"
+                  class="Form__field mb25"
+                  placeholder="Delivery date and time"
+                />
+              </div>
+            </div>
+
+            <div class="Form__order-wrapper">
+              <h3 class="Form__text text">Your order:</h3>
+              <div class="Form__card">
+                <div class="Form__card-img">
+                  <img src="images/firstCardImg.jpg" alt="" />
+                </div>
+                <div class="Form__card-text">
+                  <h4 class="Form__card-text text">1 hookah</h4>
+                  <p class="Form__card-description">
+                    3 tobacco filled fruit heads
+                  </p>
+                </div>
+                <div class="Form__card-prise">
+                  <span class="purpure_color">$75</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="Form__button buttonHover" type="submit">
+              Order service
+            </button>
+          </div>
+        </div>
+        <!-- <div class="step2">
+          <h2 class="Form__title">Step 2/2</h2>
+          <p class="Form__text">Leave order details</p>
+          <p class="Form__description">
+            You can choose several flavors in 1 list to mix them
+          </p>
+          <div class="Form__container">
             <div class="Form__popup-flavor text" onclick="flavor()">
               Choose flavor you want
+              <div class="Form__popup-flavor-block">
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 1
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 2
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 3
+                </div>
+              </div>
             </div>
-            <div class="Form__popup-flavor-block">
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 1
-              </div>
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 2
-              </div>
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 3
+            <div class="Form__popup-flavor text" onclick="flavor()">
+              Choose flavor you want
+              <div class="Form__popup-flavor-block">
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 1
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 2
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 3
+                </div>
               </div>
             </div>
+            <div class="Form__popup-flavor text" onclick="flavor()">
+              Choose flavor you want
+              <div class="Form__popup-flavor-block">
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 1
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 2
+                </div>
+                <div class="Form__popup-flavor-row text">
+                  Choose flavor for fruit head 3
+                </div>
+              </div>
+            </div>
+            <div class="Form__order-wrapper">
+              <h3 class="Form__text text">Your order:</h3>
+              <div class="Form__card">
+                <div class="Form__card-img">
+                  <img src="images/firstCardImg.jpg" alt="" />
+                </div>
+                <div class="Form__card-text">
+                  <h4 class="Form__card-text text">1 hookah</h4>
+                  <p class="Form__card-description">
+                    3 tobacco filled fruit heads
+                  </p>
+                </div>
+                <div class="Form__card-prise">
+                  <span class="purpure_color">$75</span>
+                </div>
+              </div>
+            </div>
+
+            <button class="Form__button buttonHover" type="submit">
+              Order service
+            </button>
           </div>
-          <button class="Form__button buttonHover" type="submit">
-            Order service
-          </button>
-        </div>
+        </div> -->
       </form>
     </section>
     <footer class="footer">
