@@ -51,8 +51,9 @@ const renderCards = (data) => {
 };
 
 const renderCartInForm = (data) => {
-  const card = document.querySelector(".Form__card");
-  card.innerHTML = `
+  const cards = document.querySelectorAll(".Form__card");
+  cards.forEach((card) => {
+    card.innerHTML = `
   <div class="Form__card-img">
                 <img src="${data.img}" alt="" />
               </div>
@@ -66,6 +67,7 @@ const renderCartInForm = (data) => {
                 <span class="purpure_color">$${data.price}</span>
               </div>
   `;
+  });
 };
 
 const onDetails = () => {
@@ -85,6 +87,7 @@ const getData = async () => {
   const exit = document.querySelector(".Form__exit");
   const step1 = document.querySelector(".step1");
   const step2 = document.querySelector(".step2");
+  const step3 = document.querySelector(".step3");
   const formSubmitButton = document.querySelectorAll(".Form__button");
   const Data = [];
 
@@ -99,6 +102,7 @@ const getData = async () => {
     form.classList.remove("Active");
     step1.classList.add("step--active");
     step2.classList.remove("step--active");
+    step3.classList.remove("step--active");
     const inputs = document.querySelectorAll(".Form__field");
     inputs.forEach((element) => {
       element.value = "";
@@ -133,7 +137,14 @@ const getData = async () => {
     console.log(e);
     e.preventDefault();
     step1.classList.remove("step--active");
+    step3.classList.remove("step--active");
     step2.classList.add("step--active");
+  });
+  formSubmitButton[1].addEventListener("click", (e) => {
+    e.preventDefault();
+    step1.classList.remove("step--active");
+    step2.classList.remove("step--active");
+    step3.classList.add("step--active");
   });
 };
 

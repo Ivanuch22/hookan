@@ -1,5 +1,9 @@
 @import url("nuleStyle.scss");
 @import url("globalStyle.scss");
+body{
+  scroll-behavior: smooth;
+
+}
 .viber{
   display: flex;
   align-items: center;
@@ -19,8 +23,20 @@
 .step2{
   display: none;
 }
+.step3{
+  display: none;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  &__images{
+    margin: 0 auto;
+  }
+}
 .step--active{
-  display: block;
+  display: flex;
+  flex-direction: column;
+
 }
 .Form {
   z-index: -22;
@@ -28,6 +44,7 @@
   align-items: center;
   padding: 10px;
   top: 0;
+  display: flex;
   bottom: 0;
   left: 0;
   right: 0;
@@ -117,6 +134,7 @@ margin-bottom: 25px;
   &__container {
     margin: 0 auto;
     padding-bottom: 38px;
+    width: 100%;
     max-width: 386px;
   }
   &__field {
@@ -348,7 +366,6 @@ margin-bottom: 25px;
 
 
 .Form.Active {
-  display: flex;
   z-index: 221;
   opacity: 1;
   overflow-y: auto;
@@ -430,11 +447,7 @@ margin-bottom: 25px;
   }
 
 }
-.step2{
-  .Form__text{
-    margin: 0;
-  }
-}
+
 .footer {
   background-color: #fcf9ff;
   &__block {
