@@ -1,6 +1,18 @@
 @import url("nuleStyle.scss");
 @import url("globalStyle.scss");
-
+.viber{
+  display: flex;
+  align-items: center;
+  img{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+  }
+}
+.viber-img{
+  width: 20px;
+  height: 20px;
+}
 .Form {
   z-index: -22;
   position: fixed;
@@ -421,7 +433,8 @@ margin-bottom: 25px;
     color: #191919;
     margin-left: 49px;
     font-size: 19px;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-right: 50px;
     font-weight: 700;
   }
@@ -3196,10 +3209,6 @@ input[type="range"] {
   .instagram {
     margin-right: 56px;
   }
-  .firstSection {
-    max-height: auto;
-    min-height: 113vh;
-  }
   .firstSection__title {
     max-width: 92%;
   }
@@ -3514,10 +3523,6 @@ input[type="range"] {
   .DescriptionSection__card {
     width: 100%;
     margin: 0;
-  }
-  .firstSection {
-    max-height: auto;
-    min-height: 1025px;
   }
 }
 
