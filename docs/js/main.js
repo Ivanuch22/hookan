@@ -1,3 +1,4 @@
+"use strict";
 //Swiper
 new Swiper(".Proof__slider", {
   breakpoints: {
@@ -16,6 +17,140 @@ new Swiper(".Proof__slider", {
   },
   loop: true,
 });
+
+document.querySelectorAll('a[href^="#card-block"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    console.log(this);
+    document.querySelector(this.getAttribute("href")).scrollIntoView({
+      behavior: "smooth",
+    });
+  });
+});
+
+const renderCheckboxFlavor = async (number) => {
+  const container = document.querySelector(".sts");
+  container.innerHTML = "";
+  const array = [];
+  for (let index = 0; index < number; index++) {
+    const element = `
+    <div class="Form__popup-flavor text">
+    <div class="Form__popup-flavor-text">
+      Choose flavor for fruit head ${index + 1}
+    </div>
+    <div class="Form__popup-flavor-block">
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Fruity mix</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Sweet mix</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Sweet and minty mix</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Sweet and sour mix</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Spicy mix</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Surprise me</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Double Apple</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Blueberry</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Watermelon</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Mint</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Gum</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Strawberry</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Grape</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Melon</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Grapefruit</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Guava</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Kiwi</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Peach</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Orange</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Love 66</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Lady Killer</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Blue Mist</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">White Gummy Bears</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Watermelon Lit</p>
+      </label>
+      <label>
+        <input class="Form__popup-flavor-row text" type="checkbox" />
+        <p class="Form__input-text">Sex on the Beach</p>
+      </label>
+    </div>
+  </div>`;
+    console.log(index, number, element, container);
+    array.push(element);
+  }
+  await array.map((element) => {
+    console.log(element);
+    container.insertAdjacentHTML("beforeend", element);
+  });
+
+  onFlavors();
+};
 
 const renderCards = (data) => {
   const block = document.querySelector(".Package__block");
@@ -70,6 +205,16 @@ const renderCartInForm = (data) => {
   });
 };
 
+const onFlavors = () => {
+  const buttons = document.querySelectorAll(".Form__popup-flavor-text");
+  const blocks = document.querySelectorAll(".Form__popup-flavor-block");
+  buttons.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      blocks[index].classList.toggle("Form__popup-flavor-block--active");
+    });
+  });
+};
+
 const onDetails = () => {
   const button = document.querySelector(".Form__popup .text");
   const block = document.querySelector(".Form__popup-details");
@@ -84,11 +229,11 @@ const onDetails = () => {
 const getData = async () => {
   const body = document.body;
   const form = document.querySelector(".Form");
-  const exit = document.querySelector(".Form__exit");
   const step1 = document.querySelector(".step1");
   const step2 = document.querySelector(".step2");
   const step3 = document.querySelector(".step3");
   const formSubmitButton = document.querySelectorAll(".Form__button");
+  const exitButtons = document.querySelectorAll(".Form__exit-line");
   const Data = [];
 
   const openForm = (data) => {
@@ -114,6 +259,7 @@ const getData = async () => {
     .then((data) => Data.push(...data));
 
   await renderCards(Data);
+  // console.log();
 
   const buttons = document.querySelectorAll("#card");
 
@@ -121,20 +267,21 @@ const getData = async () => {
     element.addEventListener("click", () => {
       openForm();
       renderCartInForm(Data[index]);
+      renderCheckboxFlavor(+Data[index].text[2]);
     });
   });
-  exit.addEventListener("click", () => {
-    closeForm();
+
+  exitButtons.forEach((element) => {
+    form.addEventListener("click", (e) => {
+      if (e.target === form || e.target === element) {
+        closeForm();
+      }
+    });
   });
+
   onDetails();
 
-  form.addEventListener("click", (e) => {
-    if (e.target === form || e.target === exit) {
-      closeForm();
-    }
-  });
   formSubmitButton[0].addEventListener("click", (e) => {
-    console.log(e);
     e.preventDefault();
     step1.classList.remove("step--active");
     step3.classList.remove("step--active");
