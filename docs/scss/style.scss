@@ -21,17 +21,44 @@ body {
 }
 .step1 {
   display: none;
+  .Form__container{
+    position: relative;
+    &::after {
+      content: url(../images/asterisk.svg);
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      width: 8px;
+      height: 9px;
+      z-index: 345;
+      background-image: url();
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+    &::before {
+      content: url(../images/asterisk.svg);
+      position: absolute;
+      top: 65px;
+      right: 10px;
+      width: 8px;
+      height: 9px;
+      z-index: 345;
+      background-image: url();
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
 }
 .step2 {
   display: none;
 
-  .Form__button{
+  .Form__button {
     margin-bottom: 25px !important;
   }
 }
-.sts{
+.sts {
   padding-bottom: 10px !important;
-
 }
 .step3 {
   display: none;
@@ -157,6 +184,14 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 140%;
+    &[name="name"] {
+      position: relative;
+
+    }
+    &:focus {
+      border: 1px solid #f2994a !important;
+      color: #505050;
+    }
     &::placeholder {
       color: #b4b4b4;
       font-size: inherit;
@@ -261,7 +296,7 @@ body {
     width: 100%;
     max-width: 386px;
     margin: 0 auto;
-    
+
     &:before {
       content: "";
       position: absolute;
@@ -317,7 +352,7 @@ body {
   &__popup-flavor-text {
     padding: 12px 20px;
     display: block;
-    box-shadow: 0px 4px 10px rgba(0,0,0,.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
     position: relative;
     border-radius: 5px;
@@ -340,34 +375,33 @@ body {
     padding: 0 20px;
     max-height: 0;
     overflow: auto;
-    transition: all .3s;
+    transition: all 0.3s;
     background: #fff;
   }
-&__popup-flavor-block--active{
-  max-height: 140px;
-  padding: 20px 20px 0;
-}
-  &__popup-flavor-row{
+  &__popup-flavor-block--active {
+    max-height: 140px;
+    padding: 20px 20px 0;
+  }
+  &__popup-flavor-row {
     position: absolute;
     z-index: -234;
     opacity: 0;
   }
-  &__popup-flavor-row:checked + .Form__input-text{
-    color: #F2994A !important;
+  &__popup-flavor-row:checked + .Form__input-text {
+    color: #f2994a !important;
     position: relative;
     &:before {
-        content: "";
-        position: absolute;
-        width: 13px;
-        right: 0;
-        top: 0;
-        height: 13px;
-        background-image: url(../images/checkmarkForm.svg);
-        background-size: contain;
-        background-position: center center;
-        background-repeat: no-repeat;
-      }
-
+      content: "";
+      position: absolute;
+      width: 13px;
+      right: 0;
+      top: 0;
+      height: 13px;
+      background-image: url(../images/checkmarkForm.svg);
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
   }
   label {
     font-size: 14px;
@@ -378,8 +412,6 @@ body {
     display: block;
     margin-bottom: 18px;
     position: relative;
-
-
   }
 
   &__popup-flavor-block.Active {
@@ -402,7 +434,6 @@ body {
     margin-top: 25px;
     width: 100%;
     max-width: 386px;
-    
   }
 }
 

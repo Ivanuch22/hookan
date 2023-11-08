@@ -144,7 +144,7 @@ const renderCheckboxFlavor = async (number) => {
     console.log(index, number, element, container);
     array.push(element);
   }
-  await array.map((element) => {
+  array.map((element) => {
     console.log(element);
     container.insertAdjacentHTML("beforeend", element);
   });
@@ -233,13 +233,32 @@ const getData = async () => {
   const step2 = document.querySelector(".step2");
   const step3 = document.querySelector(".step3");
   const formSubmitButton = document.querySelectorAll(".Form__button");
+  const inputs = document.querySelectorAll(".Form__field");
   const exitButtons = document.querySelectorAll(".Form__exit-line");
+  const inputName = document.querySelector("input[name=name]");
+  const inputNumber = document.querySelector("input[name=number]");
+
   const Data = [];
+
+  const changeInputColor = () => {
+    inputs.forEach((element) => {
+      element.addEventListener("input", function () {
+        const inputValue = this.value;
+
+        if (inputValue) {
+          element.style.color = `#F2994A`;
+        } else {
+          element.style.color = "#B4B4B4";
+        }
+      });
+    });
+  };
 
   const openForm = (data) => {
     step1.classList.add("step--active");
     body.classList.add("Active");
     form.classList.add("Active");
+    changeInputColor();
   };
 
   const closeForm = () => {
@@ -248,7 +267,8 @@ const getData = async () => {
     step1.classList.add("step--active");
     step2.classList.remove("step--active");
     step3.classList.remove("step--active");
-    const inputs = document.querySelectorAll(".Form__field");
+    inputName.style.border = "1px solid #dedede";
+    inputNumber.style.border = "1px solid #dedede";
     inputs.forEach((element) => {
       element.value = "";
     });
@@ -283,9 +303,15 @@ const getData = async () => {
 
   formSubmitButton[0].addEventListener("click", (e) => {
     e.preventDefault();
-    step1.classList.remove("step--active");
-    step3.classList.remove("step--active");
-    step2.classList.add("step--active");
+
+    if (inputName.value && inputNumber.value) {
+      step1.classList.remove("step--active");
+      step3.classList.remove("step--active");
+      step2.classList.add("step--active");
+    } else {
+      inputName.style.border = "1px solid #f2994a";
+      inputNumber.style.border = "1px solid #f2994a";
+    }
   });
   formSubmitButton[1].addEventListener("click", (e) => {
     e.preventDefault();
