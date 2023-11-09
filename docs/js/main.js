@@ -1,27 +1,30 @@
 "use strict";
 //Swiper
-new Swiper(".Proof__slider", {
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-      spaceBetween: 1000,
+try {
+  new Swiper(".Proof__slider", {
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 1000,
+      },
+      1190: {
+        slidesPerView: 3,
+        spaceBetween: 30,
+      },
     },
-    1190: {
-      slidesPerView: 3,
-      spaceBetween: 30,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
     },
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  loop: true,
-});
+    loop: true,
+  });
+} catch {
+  console.log("Swiper not Defind");
+}
 
 document.querySelectorAll('a[href^="#card-block"]').forEach((anchor) => {
   anchor.addEventListener("click", function (e) {
     e.preventDefault();
-    console.log(this);
     document.querySelector(this.getAttribute("href")).scrollIntoView({
       behavior: "smooth",
     });
@@ -141,11 +144,9 @@ const renderCheckboxFlavor = async (number) => {
       </label>
     </div>
   </div>`;
-    console.log(index, number, element, container);
     array.push(element);
   }
   array.map((element) => {
-    console.log(element);
     container.insertAdjacentHTML("beforeend", element);
   });
 
@@ -176,7 +177,7 @@ const renderCards = (data) => {
       <p class="Package__card-price-plus">$${element.additional} additional day</p>
     </div>
     <div class="Package__card-button-block">
-      <div id="card" class="Package__card-button buttonHover">
+      <div class="card Package__card-button buttonHover">
         Order ${element.title}
       </div>
     </div>
@@ -218,7 +219,6 @@ const onFlavors = () => {
 const onDetails = () => {
   const button = document.querySelector(".Form__popup .text");
   const block = document.querySelector(".Form__popup-details");
-  console.log(button);
 
   button.addEventListener("click", (e) => {
     block.classList.toggle("Form__popup-details--active");
@@ -237,25 +237,38 @@ const getData = async () => {
   const exitButtons = document.querySelectorAll(".Form__exit-line");
   const inputName = document.querySelector("input[name=name]");
   const inputNumber = document.querySelector("input[name=number]");
+  const blockSecond = document.querySelector(".Form__block");
 
   const Data = [];
+
+  const removeClassOnSubbmitButton = () => {
+    formSubmitButton.forEach((element) => {
+      element.classList.remove("onActive");
+    });
+  };
 
   const changeInputColor = () => {
     inputs.forEach((element) => {
       element.addEventListener("input", function () {
         const inputValue = this.value;
-
         if (inputValue) {
           element.style.color = `#F2994A`;
         } else {
           element.style.color = "#B4B4B4";
         }
+        if (inputName.value && inputNumber.value) {
+          formSubmitButton.forEach((element) => {
+            element.classList.add("onActive");
+          });
+        } else {
+          removeClassOnSubbmitButton();
+        }
       });
     });
   };
 
-  const openForm = (data) => {
-    step1.classList.add("step--active");
+  const openForm = (element) => {
+    element.classList.add("step--active");
     body.classList.add("Active");
     form.classList.add("Active");
     changeInputColor();
@@ -264,11 +277,13 @@ const getData = async () => {
   const closeForm = () => {
     body.classList.remove("Active");
     form.classList.remove("Active");
-    step1.classList.add("step--active");
-    step2.classList.remove("step--active");
-    step3.classList.remove("step--active");
+    const activeElement = document.querySelectorAll(".step--active");
+    activeElement.forEach((element) => {
+      element.classList.remove("step--active");
+    });
     inputName.style.border = "1px solid #dedede";
     inputNumber.style.border = "1px solid #dedede";
+    removeClassOnSubbmitButton();
     inputs.forEach((element) => {
       element.value = "";
     });
@@ -278,14 +293,27 @@ const getData = async () => {
     .then((response) => response.json())
     .then((data) => Data.push(...data));
 
-  await renderCards(Data);
-  // console.log();
+  try {
+    await renderCards(Data);
+  } catch {
+    console.log("card is not rendered");
+  }
 
-  const buttons = document.querySelectorAll("#card");
+  const buttons = document.querySelectorAll(".card");
+  const buttonOnSecondPage = document.querySelector(".ChooseHookahs__button");
+
+  try {
+    buttonOnSecondPage.addEventListener("click", () => {
+      openForm(blockSecond);
+      renderCartInForm(dataFormCalculator);
+    });
+  } catch {
+    console.log("is not second page");
+  }
 
   buttons.forEach((element, index) => {
     element.addEventListener("click", () => {
-      openForm();
+      openForm(step1);
       renderCartInForm(Data[index]);
       renderCheckboxFlavor(+Data[index].text[2]);
     });
@@ -299,26 +327,144 @@ const getData = async () => {
     });
   });
 
-  onDetails();
+  try {
+    onDetails();
+  } catch {
+    console.log("Details not found");
+  }
 
-  formSubmitButton[0].addEventListener("click", (e) => {
-    e.preventDefault();
-
-    if (inputName.value && inputNumber.value) {
+  try {
+    formSubmitButton[0].addEventListener("click", (e) => {
+      e.preventDefault();
+      if (inputName.value && inputNumber.value) {
+        step1.classList.remove("step--active");
+        step3.classList.remove("step--active");
+        step2.classList.add("step--active");
+      } else {
+        inputName.style.border = "1px solid #f2994a";
+        inputNumber.style.border = "1px solid #f2994a";
+      }
+    });
+  } catch {
+    console.log("is not fist page");
+  }
+  try {
+    formSubmitButton[1].addEventListener("click", (e) => {
+      e.preventDefault();
       step1.classList.remove("step--active");
-      step3.classList.remove("step--active");
-      step2.classList.add("step--active");
-    } else {
-      inputName.style.border = "1px solid #f2994a";
-      inputNumber.style.border = "1px solid #f2994a";
-    }
-  });
-  formSubmitButton[1].addEventListener("click", (e) => {
-    e.preventDefault();
-    step1.classList.remove("step--active");
-    step2.classList.remove("step--active");
-    step3.classList.add("step--active");
-  });
+      step2.classList.remove("step--active");
+      step3.classList.add("step--active");
+    });
+  } catch {
+    console.log("Not found second form button");
+  }
+  try {
+    formSubmitButton[0].addEventListener("click", (e) => {
+      e.preventDefault();
+      if (inputName.value && inputNumber.value) {
+        blockSecond.classList.remove("step--active");
+        step3.classList.add("step--active");
+      } else {
+        inputName.style.border = "1px solid #f2994a";
+        inputNumber.style.border = "1px solid #f2994a";
+      }
+    });
+  } catch {
+    console.log("is not second page");
+  }
 };
 
 getData();
+
+////
+const dataFormCalculator = {
+  img: "images/secondCardImg.jpg",
+  title: "3 hookahs",
+  text: "3 hours of service",
+  price: "320",
+};
+try {
+  ///Ползунок
+  const slider = document.querySelector("#slider");
+  const fill = document.querySelector(
+    ".ChooseHookahs__left-input-progressbar .ChooseHookahs__left-input-fill"
+  );
+  const ProgressBar = () => {
+    fill.style.width = slider.value + "%";
+  };
+  ProgressBar();
+  slider.addEventListener("input", ProgressBar);
+
+  //
+  const mobileActiveButton = document.querySelector(
+    ".ChooseHookahs__colum-button--mobile"
+  );
+  const quantityBlock = document.querySelector(
+    ".ChooseHookahs__row:first-child"
+  );
+  mobileActiveButton.addEventListener("click", () =>
+    quantityBlock.classList.toggle("Active")
+  );
+
+  //Калькулятор
+  const time = document.querySelector(".ChooseHookahs__left-number");
+  const checkBoxs = document.querySelectorAll(".ChooseHookahs__colum-checkbox");
+  const range = document.querySelector("#slider");
+  const price = document.querySelector(".ChooseHookahs__rigth-price");
+  const radios = [
+    {
+      name: "3 hookahs",
+      price: 100,
+    },
+    {
+      name: "5 hookahs",
+      price: 200,
+    },
+    {
+      name: "7 hookahs",
+      price: 300,
+    },
+    {
+      name: "9 hookahs",
+      price: 400,
+    },
+    {
+      name: "15 hookahs",
+      price: 500,
+    },
+  ];
+
+  for (let radio of checkBoxs) {
+    radio.onclick = function () {
+      takeActiveRadio(radio);
+    };
+  }
+  let currentPrice = 100;
+  const takeActiveRadio = (currentActive) => {
+    const dataAtribute = currentActive.dataset.name;
+    dataFormCalculator.title = dataAtribute;
+    const currentRadio = radios.find((radio) => radio.name === dataAtribute);
+    currentPrice = currentRadio.price;
+    coast();
+  };
+
+  range.addEventListener("input", () => {
+    const hour = Math.ceil(range.value / 20);
+    while (hour == 0) {
+      hour = 1;
+    }
+    time.innerHTML = hour;
+    dataFormCalculator.text = `${hour} hours of service`;
+    coast();
+  });
+  const coast = (ttime = 100, zena, pprice) => {
+    ttime = time.innerHTML;
+    zena = currentPrice;
+    pprice = ttime * zena;
+    price.innerHTML = "$" + pprice;
+    dataFormCalculator.price = pprice;
+    console.group(dataFormCalculator);
+  };
+} catch {
+  console.log("Is not second page");
+}

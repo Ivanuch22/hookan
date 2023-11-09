@@ -71,7 +71,7 @@ body {
   }
 }
 .step--active {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
 }
 .Form {
@@ -95,6 +95,9 @@ body {
     right: 0;
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
+  }
+  &__block{
+    display: none;
   }
   &__field.textarea {
     height: 90px;
@@ -141,7 +144,7 @@ body {
     overflow-y: auto;
     height: auto;
     width: 594px;
-    max-height: 72%;
+    max-height: 85%;
     &::-webkit-scrollbar {
       display: none;
     }
@@ -189,7 +192,7 @@ body {
 
     }
     &:focus {
-      border: 1px solid #f2994a !important;
+      border: 1px solid #f2994a ;
       color: #505050;
     }
     &::placeholder {
@@ -227,7 +230,6 @@ body {
     overflow: hidden;
     height: 70px;
     border-radius: 5px;
-    margin-right: 15px;
   }
   &__card-img img {
     height: 100%;
@@ -423,8 +425,8 @@ body {
     font-weight: bold;
     line-height: 22px;
     text-transform: uppercase;
-    color: #fff;
-    background-color: #f2994a;
+    color: #666;
+    background-color: #ccc;
     border-radius: 25px;
     padding: 14px 20px;
     position: relative;
@@ -434,6 +436,17 @@ body {
     margin-top: 25px;
     width: 100%;
     max-width: 386px;
+    &::before{
+      background: transparent;
+      transition: all 0.3s;
+    }
+  }
+}
+.onActive{
+  background-color: #f2994a;
+  color: #fff;
+  &::before{
+    background: #f2994a;
   }
 }
 
@@ -4129,6 +4142,8 @@ input[type="range"] {
   .secondindex {
     .firstSection__content-text {
       bottom: 44%;
+      left: 20px;
+      right: 20px;
       height: 88%;
     }
     .firstSection__title {

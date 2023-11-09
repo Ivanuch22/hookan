@@ -14,10 +14,6 @@ input::-webkit-inner-spin-button {
   color: #b4b4b4;
 }
 
-// input[type="number"] {
-//   -moz-appearance: textfield;
-// }
-
 body {
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
@@ -128,7 +124,7 @@ body.Active {
     width: 36px;
     height: 36px;
     position: absolute;
-    top: 50%;
+    top: 57%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
