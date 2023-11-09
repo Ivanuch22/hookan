@@ -1,4 +1,6 @@
 "use strict";
+// const fetch = require("node-fetch"); // If you're using Node.js
+
 //Swiper
 try {
   new Swiper(".Proof__slider", {
@@ -216,14 +218,50 @@ const onFlavors = () => {
   });
 };
 
-const onDetails = () => {
+const changeClassInDetails = () => {
   const button = document.querySelector(".Form__popup .text");
   const block = document.querySelector(".Form__popup-details");
+  block.classList.toggle("Form__popup-details--active");
+  button.classList.toggle("text--active");
+};
 
+const onDetails = () => {
+  const button = document.querySelector(".Form__popup .text");
   button.addEventListener("click", (e) => {
-    block.classList.toggle("Form__popup-details--active");
-    button.classList.toggle("text--active");
+    changeClassInDetails();
   });
+};
+
+const sendMessageToTelegram = () => {
+  const TOKEN = "6619280299:AAGIL6f6uD5nOU1Sjw26zzqvyI0V_fZZKq0";
+  const CHAT_ID = "-1002007095666";
+  const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+
+  const form = document.getElementsByTagName("form");
+
+  let message = `Заявка з сайта! \n`;
+  message += `Імя ${form[0].name.value} \n`;
+  message += `Номер ${form[0].number.value} \n`;
+  message += `Адреса ${form[0].address.value} \n`;
+  message += `День на який потрібно ${form[0].datetime.value}`;
+  const formData = new URLSearchParams();
+  formData.append("chat_id", CHAT_ID);
+  formData.append("text", message);
+
+  fetch(URL_API, {
+    method: "POST",
+    body: formData,
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Message sent:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 };
 
 const getData = async () => {
@@ -247,21 +285,40 @@ const getData = async () => {
     });
   };
 
+  const addingMinInputValueTypeDate = () => {
+    console.log(inputs);
+    const newInput = [];
+    inputs.forEach((element) => {
+      if (element.getAttribute("type") === "date") {
+        newInput.push(element);
+      }
+    });
+    newInput.forEach((element) => {
+      element.min = new Date().toISOString().split("T")[0];
+    });
+  };
+
+  const changeButtonColor = () => {
+    inputs.forEach((element) => {
+      if (element.value) {
+        formSubmitButton.forEach((element) => {
+          element.classList.add("onActive");
+        });
+      } else {
+        removeClassOnSubbmitButton();
+      }
+    });
+  };
+
   const changeInputColor = () => {
     inputs.forEach((element) => {
-      element.addEventListener("input", function () {
+      element.addEventListener("input", function (e) {
         const inputValue = this.value;
+        changeButtonColor();
         if (inputValue) {
           element.style.color = `#F2994A`;
         } else {
           element.style.color = "#B4B4B4";
-        }
-        if (inputName.value && inputNumber.value) {
-          formSubmitButton.forEach((element) => {
-            element.classList.add("onActive");
-          });
-        } else {
-          removeClassOnSubbmitButton();
         }
       });
     });
@@ -272,6 +329,7 @@ const getData = async () => {
     body.classList.add("Active");
     form.classList.add("Active");
     changeInputColor();
+    addingMinInputValueTypeDate();
   };
 
   const closeForm = () => {
@@ -281,11 +339,10 @@ const getData = async () => {
     activeElement.forEach((element) => {
       element.classList.remove("step--active");
     });
-    inputName.style.border = "1px solid #dedede";
-    inputNumber.style.border = "1px solid #dedede";
     removeClassOnSubbmitButton();
     inputs.forEach((element) => {
       element.value = "";
+      element.style.border = "1px solid #dedede";
     });
   };
 
@@ -333,24 +390,23 @@ const getData = async () => {
     console.log("Details not found");
   }
 
-  try {
-    formSubmitButton[0].addEventListener("click", (e) => {
-      e.preventDefault();
-      if (inputName.value && inputNumber.value) {
+  const checkValue = (e) => {
+    e.preventDefault();
+    inputs.forEach((element) => {
+      if (element.value) {
         step1.classList.remove("step--active");
         step3.classList.remove("step--active");
         step2.classList.add("step--active");
       } else {
-        inputName.style.border = "1px solid #f2994a";
-        inputNumber.style.border = "1px solid #f2994a";
+        element.style.border = "1px solid #f2994a";
       }
     });
-  } catch {
-    console.log("is not fist page");
-  }
+  };
+
   try {
     formSubmitButton[1].addEventListener("click", (e) => {
       e.preventDefault();
+      sendMessageToTelegram();
       step1.classList.remove("step--active");
       step2.classList.remove("step--active");
       step3.classList.add("step--active");
@@ -361,16 +417,26 @@ const getData = async () => {
   try {
     formSubmitButton[0].addEventListener("click", (e) => {
       e.preventDefault();
-      if (inputName.value && inputNumber.value) {
-        blockSecond.classList.remove("step--active");
-        step3.classList.add("step--active");
-      } else {
-        inputName.style.border = "1px solid #f2994a";
-        inputNumber.style.border = "1px solid #f2994a";
-      }
+      inputs.forEach((element) => {
+        if (element.value) {
+          sendMessageToTelegram();
+          blockSecond.classList.remove("step--active");
+          step3.classList.add("step--active");
+        } else {
+          element.style.border = "1px solid #f2994a";
+        }
+      });
     });
   } catch {
     console.log("is not second page");
+  }
+  try {
+    formSubmitButton[0].addEventListener("click", (e) => {
+      changeClassInDetails();
+      checkValue(e);
+    });
+  } catch {
+    console.log("is not fist page");
   }
 };
 

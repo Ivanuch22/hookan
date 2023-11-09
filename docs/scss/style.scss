@@ -23,29 +23,11 @@ body {
   display: none;
   .Form__container{
     position: relative;
-    &::after {
-      content: url(../images/asterisk.svg);
-      position: absolute;
-      top: 5px;
-      right: 10px;
-      width: 8px;
-      height: 9px;
-      z-index: 345;
-      background-image: url();
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-    &::before {
-      content: url(../images/asterisk.svg);
-      position: absolute;
-      top: 65px;
-      right: 10px;
-      width: 8px;
-      height: 9px;
-      z-index: 345;
-      background-image: url();
-      background-repeat: no-repeat;
-      background-size: contain;
+
+  }
+  .Form__button {
+    &:hover{
+      background-color: #ccc; 
     }
   }
 
@@ -192,7 +174,7 @@ body {
 
     }
     &:focus {
-      border: 1px solid #f2994a ;
+      border: 1px solid #f2994a !important;
       color: #505050;
     }
     &::placeholder {
@@ -229,10 +211,15 @@ body {
     max-width: 104px;
     overflow: hidden;
     height: 70px;
+    margin-right: 15px;
+    width: 100%;
     border-radius: 5px;
   }
-  &__card-img img {
+  &__card-img img { 
     height: 100%;
+    width: 100%;
+  }
+  &__card-text{
     width: 100%;
   }
   &__card-description {
@@ -289,6 +276,21 @@ body {
       right: 0;
       height: 1px;
       background-color: #eaeaea;
+    }
+  }
+  &__input-wrapper{
+    position: relative;
+    &::after {
+      content: url(../images/asterisk.svg);
+      position: absolute;
+      top: 30%;
+      right: 10px;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 9px;
+      z-index: 345;
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
   &__order-wrapper {
@@ -445,6 +447,9 @@ body {
 .onActive{
   background-color: #f2994a;
   color: #fff;
+  &:hover{
+    background-color: #ea7713;
+  }
   &::before{
     background: #f2994a;
   }
@@ -3212,7 +3217,7 @@ input[type="range"] {
     margin-top: 0px;
     font-size: 20px;
     line-height: 24px;
-    margin-bottom: 0;
+    margin-bottom: 10px; 
     text-align: left;
     max-width: 384px;
   }
@@ -3716,7 +3721,7 @@ input[type="range"] {
     width: 345px;
     bottom: 230px;
     min-height: 135.2%;
-    left: 44%;
+    left: 50%;
     transform: translateX(-50%);
   }
   .mobile-viber {

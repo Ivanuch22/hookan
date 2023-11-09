@@ -23,7 +23,6 @@
       style="background-image: url(images/bg.jpg)"
     >
       <div class="container">
-        <!--  -->
         <header class="header">
           <div class="header__container">
             <a href="index.html" class="header__logo-block">
@@ -554,7 +553,7 @@
           <span class="Form__exit-line"></span>
         </div>
       </div>
-      <form action="#" method="get" class="Form__content">
+      <form class="Form__content">
         <div class="Form__exit">
           <div class="Form__exit-block">
             <span class="Form__exit-line"></span>
@@ -565,33 +564,41 @@
           <h2 class="Form__title">Step 1/2</h2>
           <p class="Form__text">Leave your contacts</p>
           <div class="Form__container">
-            <input
-              type="text"
-              name="name"
-              class="Form__field"
-              placeholder="Your name"
-            />
-            <input
-              type="number"
-              name="number"
-              class="Form__field mb25"
-              placeholder="Your phone"
-            />
+            <div class="Form__input-wrapper">
+              <input
+                type="text"
+                name="name"
+                class="Form__field"
+                placeholder="Your name"
+              />
+            </div>
+            <div class="Form__input-wrapper">
+              <input
+                type="number"
+                name="number"
+                class="Form__field mb25"
+                placeholder="Your phone"
+              />
+            </div>
             <div class="Form__popup text">
               <h6 class="text">Details</h6>
               <div class="Form__popup-details">
-                <input
-                  type="text"
-                  name="address"
-                  class="Form__field"
-                  placeholder="Delivery address"
-                />
-                <input
-                  type="datetime"
-                  name="datetime"
-                  class="Form__field mb25"
-                  placeholder="Delivery date and time"
-                />
+                <div class="Form__input-wrapper">
+                  <input
+                    type="text"
+                    name="address"
+                    class="Form__field"
+                    placeholder="Delivery address"
+                  />
+                </div>
+                <div class="Form__input-wrapper">
+                  <input
+                    type="date"
+                    name="datetime"
+                    class="Form__field mb25"
+                    placeholder="Delivery date and time"
+                  />
+                </div>
               </div>
             </div>
 
@@ -676,8 +683,8 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
