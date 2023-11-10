@@ -232,21 +232,46 @@ const onDetails = () => {
   });
 };
 
-const sendMessageToTelegram = () => {
+const sendMessageToTelegram = (data, page) => {
   const TOKEN = "6619280299:AAGIL6f6uD5nOU1Sjw26zzqvyI0V_fZZKq0";
   const CHAT_ID = "-1002007095666";
   const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
 
   const form = document.getElementsByTagName("form");
+  const DateNow = new Date().toISOString().split("T")[0];
 
-  let message = `Заявка з сайта! \n`;
-  message += `Імя ${form[0].name.value} \n`;
-  message += `Номер ${form[0].number.value} \n`;
-  message += `Адреса ${form[0].address.value} \n`;
-  message += `День на який потрібно ${form[0].datetime.value}`;
+  let message = `<b>Заявка з сайта! </b>\n`;
+  if (page === "first") {
+    message += `Дата: ${DateNow}`;
+    message += ` \nІмя замовника ${form[0].name.value} \n`;
+    message += `Номер телефону ${form[0].number.value} \n`;
+    message += `Адреса на яку відправити ${form[0].address.value} \n`;
+    message += `День на який потрібно ${form[0].datetime.value} \n`;
+    message += `<b> \nВибраний пакет: </b>
+\nНазва: ${data.title}
+Текст:${data.text}
+Опис: ${data.description}
+Цін:  ${data.price} доларів
+Ціна за добавлений день: ${data.additional} доларів
+    `;
+  } else if (page === "second") {
+    message += ` \nДата: ${DateNow}`;
+    message += `Імя замовника ${form[0].name.value} \n`;
+    message += `Номер телефону ${form[0].number.value} \n`;
+    message += `Почта замовника ${form[0].email.value} \n`;
+    message += `Адреса на яку відправити ${form[0].address.value} \n`;
+    message += `День на який потрібно ${form[0].datetime.value} \n`;
+    message += `\nВибраний пакет: 
+\nНазва: ${data.title}
+Текст:${data.text}
+Ціна:  ${data.price} доларів
+    `;
+  }
+
   const formData = new URLSearchParams();
   formData.append("chat_id", CHAT_ID);
   formData.append("text", message);
+  formData.append("parse_mode", "html");
 
   fetch(URL_API, {
     method: "POST",
@@ -273,9 +298,8 @@ const getData = async () => {
   const formSubmitButton = document.querySelectorAll(".Form__button");
   const inputs = document.querySelectorAll(".Form__field");
   const exitButtons = document.querySelectorAll(".Form__exit-line");
-  const inputName = document.querySelector("input[name=name]");
-  const inputNumber = document.querySelector("input[name=number]");
   const blockSecond = document.querySelector(".Form__block");
+  let indexOfData = 0;
 
   const Data = [];
 
@@ -371,6 +395,7 @@ const getData = async () => {
   buttons.forEach((element, index) => {
     element.addEventListener("click", () => {
       openForm(step1);
+      indexOfData = index;
       renderCartInForm(Data[index]);
       renderCheckboxFlavor(+Data[index].text[2]);
     });
@@ -392,21 +417,27 @@ const getData = async () => {
 
   const checkValue = (e) => {
     e.preventDefault();
+    const array = [];
     inputs.forEach((element) => {
       if (element.value) {
-        step1.classList.remove("step--active");
-        step3.classList.remove("step--active");
-        step2.classList.add("step--active");
+        array.push(true);
       } else {
-        element.style.border = "1px solid #f2994a";
+        array.push(false);
       }
     });
+    if (array.includes(false)) {
+      inputs.forEach((element) => (element.style.border = "1px solid #f2994a"));
+    } else {
+      step1.classList.remove("step--active");
+      step3.classList.remove("step--active");
+      step2.classList.add("step--active");
+    }
   };
 
   try {
     formSubmitButton[1].addEventListener("click", (e) => {
       e.preventDefault();
-      sendMessageToTelegram();
+      sendMessageToTelegram(Data[indexOfData], "first");
       step1.classList.remove("step--active");
       step2.classList.remove("step--active");
       step3.classList.add("step--active");
@@ -417,19 +448,28 @@ const getData = async () => {
   try {
     formSubmitButton[0].addEventListener("click", (e) => {
       e.preventDefault();
+      const array = [];
       inputs.forEach((element) => {
         if (element.value) {
-          sendMessageToTelegram();
-          blockSecond.classList.remove("step--active");
-          step3.classList.add("step--active");
+          array.push(true);
         } else {
-          element.style.border = "1px solid #f2994a";
+          array.push(false);
         }
       });
+      if (array.includes(false)) {
+        inputs.forEach(
+          (element) => (element.style.border = "1px solid #f2994a")
+        );
+      } else {
+        sendMessageToTelegram(dataFormCalculator, "second");
+        blockSecond.classList.remove("step--active");
+        step3.classList.add("step--active");
+      }
     });
   } catch {
     console.log("is not second page");
   }
+
   try {
     formSubmitButton[0].addEventListener("click", (e) => {
       changeClassInDetails();
