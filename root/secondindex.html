@@ -25,13 +25,13 @@
       <div class="container">
         <header class="header">
           <div class="header__container">
-            <div class="header__logo-block">
+            <a href="index.html" class="header__logo-block">
               <img class="header__logo" src="images/logo.png" alt="" />
-            </div>
+            </a>
             <ul class="header__nav">
               <li class="">
                 <a
-                  class="header__nav-button-text header__nav-button--active header__nav-button header__nav-button-left"
+                  class="header__nav-button-text header__nav-button header__nav-button-left"
                   href="index.html"
                   >HOOKAH RENTALS & DELIVERY
                   <div class="header__nav-wrapper"></div
@@ -39,7 +39,7 @@
               </li>
               <li class="">
                 <a
-                  class="header__nav-button header__nav-button--right header__nav-button-text"
+                  class="header__nav-button header__nav-button--active header__nav-button--right header__nav-button-text"
                   href="secondindex.html"
                   >HOOKAH CATERING
                   <div class="header__nav-wrapper"></div>
@@ -47,7 +47,7 @@
               </li>
             </ul>
             <a class="mobile-viber" href="#"
-              ><img src="images/Vector.png" alt="#"
+              ><img src="images/viber.svg" alt="#"
             /></a>
             <div class="header__communication">
               <a
@@ -61,7 +61,7 @@
                 ><img src="images/instagram.svg" alt="instagram"
               /></a>
               <a class="header__communication-link viber" href="#"
-                ><img src="images/Vector.png" alt="" /> +1 (305) 981-6688</a
+                ><img src="images/viber.svg" alt="" /> +1 (305) 981-6688</a
               >
             </div>
           </div>
@@ -76,13 +76,9 @@
               <span class="purpure_color">to your event</span>
             </p>
             <div class="firstSection__link-block">
-              <div
-                class="firstSection__link buttonHover"
-                onclick="Click()"
-                href=""
-              >
+              <a class="firstSection__link buttonHover" href="#card-block">
                 Order service
-              </div>
+              </a>
             </div>
           </div>
           <div class="firstSection__content-image-block2">
@@ -214,6 +210,7 @@
     </section>
     <section
       class="ChooseHookahs"
+      id="card-block"
       style="background-image: url(images/Coosebacg.jpg)"
     >
       <div class="container">
@@ -224,7 +221,7 @@
           This online calculator will show your order price depending on
           required event duration
         </p>
-        <div onclick="Actives()" class="ChooseHookahs__colum-button--mobile">
+        <div class="ChooseHookahs__colum-button--mobile">
           Choose hookah quantity
         </div>
         <div class="ChooseHookahs__block">
@@ -356,7 +353,7 @@
               <span class="ChooseHookahs__rigth-price">$320</span>
             </div>
           </div>
-          <div onclick="Click()" class="ChooseHookahs__button buttonHover">
+          <div class="ChooseHookahs__button buttonHover">
             Order hookah catering
           </div>
           <p class="ChooseHookahs__moreDescrption">
@@ -484,7 +481,7 @@
               <div class="WhyChoosseUs__block-row-block-img">
                 <img
                   class="WhyChoosseUs__block-img"
-                  src="images/005-hookahpurple.png"
+                  src="images/005-hookah.svg"
                   alt=""
                 />
               </div>
@@ -502,7 +499,7 @@
               <div class="WhyChoosseUs__block-row-block-img">
                 <img
                   class="WhyChoosseUs__block-img"
-                  src="images/006-charcoalpurple.png"
+                  src="images/006-charcoal.svg"
                   alt=""
                 />
               </div>
@@ -521,7 +518,7 @@
               <div class="WhyChoosseUs__block-row-block-img">
                 <img
                   class="WhyChoosseUs__block-img"
-                  src="images/004-tobaccopurple.png"
+                  src="images/004-tobacco.svg"
                   alt=""
                 />
               </div>
@@ -539,7 +536,7 @@
               <div class="WhyChoosseUs__block-row-block-img">
                 <img
                   class="WhyChoosseUs__block-img"
-                  src="images/clock (7)1.png"
+                  src="images/clock.svg"
                   alt=""
                 />
               </div>
@@ -627,115 +624,80 @@
       </div>
     </section>
     <section class="Form">
-      <div onclick="exit()" class="Form__exit">
+      <div class="Form__exit">
         <div class="Form__exit-block">
           <span class="Form__exit-line"></span>
           <span class="Form__exit-line"></span>
         </div>
       </div>
       <form action="#" method="get" class="Form__content">
-        <div onclick="exit()" class="Form__exit Mobile">
+        <div class="Form__exit">
           <div class="Form__exit-block">
             <span class="Form__exit-line"></span>
             <span class="Form__exit-line"></span>
           </div>
         </div>
-        <h2 class="Form__title">Leave your contacts</h2>
-        <div class="Form__container">
-          <input
-            type="text"
-            name="name"
-            class="Form__field"
-            placeholder="Your name"
-          />
-          <input
-            type="number"
-            name="number"
-            class="Form__field"
-            placeholder="Your phone"
-          />
-          <h3 class="Form__text text">Your order:</h3>
-          <div class="Form__card">
-            <div class="Form__card-img">
-              <img src="images/firstCardImg.jpg" alt="" />
+        <div class="Form__block">
+          <h2 class="Form__title">Leave your contacts</h2>
+          <div class="Form__container">
+            <div class="Form__input-wrapper">
+              <input
+                type="text"
+                name="name"
+                class="Form__field"
+                placeholder="Your name"
+              />
             </div>
-            <div class="Form__card-text">
-              <h4 class="Form__card-text text">1 hookah</h4>
-              <p class="Form__card-description">3 tobacco filled fruit heads</p>
+            <div class="Form__input-wrapper">
+              <input
+                type="number"
+                name="number"
+                class="Form__field mb25"
+                placeholder="Your phone"
+              />
             </div>
-            <div class="Form__card-prise">
-              <span class="purpure_color">$75</span>
+            <div class="Form__input-wrapper">
+              <input
+                type="email"
+                name="email"
+                class="Form__field"
+                placeholder="Your E-mail"
+              />
             </div>
+            <div class="Form__input-wrapper">
+              <input
+                type="text"
+                name="address"
+                class="Form__field"
+                placeholder="Delivery address"
+              />
+            </div>
+            <div class="Form__input-wrapper">
+              <input
+                type="date"
+                name="datetime"
+                class="Form__field mb25"
+                placeholder="Delivery date & time"
+              />
+            </div>
+            <div class="Form__order-wrapper">
+              <h3 class="Form__text text">Your order:</h3>
+              <div class="Form__card"></div>
+            </div>
+            <button class="Form__button buttonHover">Send Request</button>
           </div>
-          <div class="Form__card">
-            <div class="Form__card-img">
-              <img src="images/firstCardImg.jpg" alt="" />
-            </div>
-            <div class="Form__card-text">
-              <h4 class="Form__card-text text">2 hookah</h4>
-              <p class="Form__card-description">6 tobacco filled fruit heads</p>
-            </div>
-            <div class="Form__card-prise">
-              <span class="purpure_color">$120</span>
-            </div>
-          </div>
-          <div class="Form__card">
-            <div class="Form__card-img">
-              <img src="images/firstCardImg.jpg" alt="" />
-            </div>
-            <div class="Form__card-text">
-              <h4 class="Form__card-text text">3 hookah</h4>
-              <p class="Form__card-description">9 tobacco filled fruit heads</p>
-            </div>
-            <div class="Form__card-prise">
-              <span class="purpure_color">$160</span>
-            </div>
-          </div>
-
-          <div onclick="Details()" class="Form__popup text">Details</div>
-          <div class="Form__popup-details">
-            <input
-              type="text"
-              name="address"
-              class="Form__field"
-              placeholder="Delivery address"
-            />
-            <input
-              type="datetime"
-              name="datetime"
-              class="Form__field"
-              placeholder="Delivery date and time"
-            />
-            <textarea
-              name="text"
-              class="Form__field textarea"
-              placeholder="Write the hookahs and flavors you want"
-            ></textarea>
-            <div class="Form__popup-flavor text" onclick="flavor()">
-              Choose flavor you want
-            </div>
-            <div class="Form__popup-flavor-block">
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 1
-              </div>
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 2
-              </div>
-              <div class="Form__popup-flavor-row text">
-                Choose flavor for fruit head 3
-              </div>
-            </div>
-          </div>
-          <button class="Form__button buttonHover" type="submit">
-            Order service
-          </button>
+        </div>
+        <div class="step3">
+          <img src="images/check.svg" alt="check Mark" class="step3__images" />
+          <h2 class="Form__title">Thank you for order!</h2>
+          <p class="Form__text">We will contact you soon!</p>
         </div>
       </form>
     </section>
     <footer class="footer">
       <div class="container">
         <div class="footer__block">
-          <a href="#" class="footer__logo"
+          <a href="index.html" class="footer__logo"
             ><img class="logo" src="images/footer_logo.png" alt=""
           /></a>
           <div class="footer__comunication">
@@ -754,7 +716,7 @@
               /></a>
             </div>
             <a href="#" class="footer__viber"
-              ><img class="viber-img" src="images/viber.png" alt="" /> +1 (305)
+              ><img class="viber-img" src="images/viber.svg" alt="" /> +1 (305)
               981-6688</a
             >
             <a href="#" class="footer__blog">BLOG</a>
@@ -770,6 +732,6 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/second.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

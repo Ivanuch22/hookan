@@ -21,16 +21,14 @@ body {
 }
 .step1 {
   display: none;
-  .Form__container{
+  .Form__container {
     position: relative;
-
   }
   .Form__button {
-    &:hover{
-      background-color: #ccc; 
+    &:hover {
+      background-color: #ccc;
     }
   }
-
 }
 .step2 {
   display: none;
@@ -78,7 +76,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(10px);
   }
-  &__block{
+  &__block {
     display: none;
   }
   &__field.textarea {
@@ -171,7 +169,6 @@ body {
     line-height: 140%;
     &[name="name"] {
       position: relative;
-
     }
     &:focus {
       border: 1px solid #f2994a !important;
@@ -215,11 +212,11 @@ body {
     width: 100%;
     border-radius: 5px;
   }
-  &__card-img img { 
+  &__card-img img {
     height: 100%;
     width: 100%;
   }
-  &__card-text{
+  &__card-text {
     width: 100%;
   }
   &__card-description {
@@ -278,7 +275,7 @@ body {
       background-color: #eaeaea;
     }
   }
-  &__input-wrapper{
+  &__input-wrapper {
     position: relative;
     &::after {
       content: url(../images/asterisk.svg);
@@ -438,19 +435,19 @@ body {
     margin-top: 25px;
     width: 100%;
     max-width: 386px;
-    &::before{
+    &::before {
       background: transparent;
       transition: all 0.3s;
     }
   }
 }
-.onActive{
+.onActive {
   background-color: #f2994a;
   color: #fff;
-  &:hover{
+  &:hover {
     background-color: #ea7713;
   }
-  &::before{
+  &::before {
     background: #f2994a;
   }
 }
@@ -633,6 +630,7 @@ body {
     bottom: -2px;
     right: 0;
     left: 32%;
+    z-index: -1;
     max-height: 117%;
   }
   &__content-img {
@@ -2697,6 +2695,7 @@ input[type="range"] {
 @media (max-width: 1180px) {
   .WhatYouGet__colum {
     max-width: 250px;
+    width: 100%;
   }
 }
 
@@ -3217,7 +3216,7 @@ input[type="range"] {
     margin-top: 0px;
     font-size: 20px;
     line-height: 24px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     text-align: left;
     max-width: 384px;
   }

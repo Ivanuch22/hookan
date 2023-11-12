@@ -1,6 +1,4 @@
 "use strict";
-// const fetch = require("node-fetch"); // If you're using Node.js
-
 //Swiper
 try {
   new Swiper(".Proof__slider", {
@@ -24,14 +22,17 @@ try {
   console.log("Swiper not Defind");
 }
 
-document.querySelectorAll('a[href^="#card-block"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth",
+const smoothScroll = () => {
+  document.querySelectorAll('a[href^="#card-block"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute("href")).scrollIntoView({
+        behavior: "smooth",
+      });
     });
   });
-});
+};
+smoothScroll();
 
 const renderCheckboxFlavor = async (number) => {
   const container = document.querySelector(".sts");
@@ -184,6 +185,7 @@ const renderCards = (data) => {
       </div>
     </div>
   </div>
+  
     `;
   });
 };
@@ -322,28 +324,36 @@ const getData = async () => {
     });
   };
 
-  const changeButtonColor = () => {
-    inputs.forEach((element) => {
-      if (element.value) {
-        formSubmitButton.forEach((element) => {
-          element.classList.add("onActive");
-        });
-      } else {
-        removeClassOnSubbmitButton();
-      }
-    });
+  const changeButtonColor = (e) => {
+    if (checkValue(e)) {
+      formSubmitButton.forEach((element) => {
+        element.classList.add("onActive");
+      });
+    } else {
+      removeClassOnSubbmitButton();
+    }
+    // inputs.forEach((element) => {
+    //   if (element.value) {
+    //     formSubmitButton.forEach((element) => {
+    //       element.classList.add("onActive");
+    //     });
+    //   } else {
+    //     removeClassOnSubbmitButton();
+    //   }
+    // });
   };
 
   const changeInputColor = () => {
     inputs.forEach((element) => {
       element.addEventListener("input", function (e) {
         const inputValue = this.value;
-        changeButtonColor();
+        changeButtonColor(e);
         if (inputValue) {
           element.style.color = `#F2994A`;
         } else {
           element.style.color = "#B4B4B4";
         }
+        checkValue();
       });
     });
   };
@@ -426,11 +436,16 @@ const getData = async () => {
       }
     });
     if (array.includes(false)) {
-      inputs.forEach((element) => (element.style.border = "1px solid #f2994a"));
+      inputs.forEach((element) => {
+        if (!element.value) {
+          element.style.border = "1px solid #f2994a";
+        } else {
+          element.style.border = "1px solid #dedede";
+        }
+      });
+      return false;
     } else {
-      step1.classList.remove("step--active");
-      step3.classList.remove("step--active");
-      step2.classList.add("step--active");
+      return true;
     }
   };
 
@@ -474,6 +489,9 @@ const getData = async () => {
     formSubmitButton[0].addEventListener("click", (e) => {
       changeClassInDetails();
       checkValue(e);
+      step1.classList.remove("step--active");
+      step3.classList.remove("step--active");
+      step2.classList.add("step--active");
     });
   } catch {
     console.log("is not fist page");
@@ -555,10 +573,11 @@ try {
   };
 
   range.addEventListener("input", () => {
-    const hour = Math.ceil(range.value / 20);
+    let hour = Math.ceil(range.value / 20);
     while (hour == 0) {
       hour = 1;
     }
+    console.log(hour);
     time.innerHTML = hour;
     dataFormCalculator.text = `${hour} hours of service`;
     coast();

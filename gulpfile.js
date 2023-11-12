@@ -38,7 +38,7 @@ function scripts() {
 }
 
 function images() {
-  return src("docs/images/**/*")
+  return src("docs/imagesFullSize/**/*")
     .pipe(
       imagemin([
         imagemin.gifsicle({ interlaced: true }),
