@@ -235,7 +235,7 @@ const onDetails = () => {
   });
 };
 
-const sendMessageToTelegram = (data, page) => {
+const sendMessageToTelegram = async (data, page) => {
   const TOKEN = "6619280299:AAGIL6f6uD5nOU1Sjw26zzqvyI0V_fZZKq0";
   const CHAT_ID = "-1002007095666";
   const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
@@ -244,32 +244,42 @@ const sendMessageToTelegram = (data, page) => {
   const form = document.getElementsByTagName("form");
   const DateNow = new Date().toISOString().split("T")[0];
 
-  let message = `<b>Заявка з сайта! </b>\n`;
+  let message = `<b>Заявка з сайта! </b>`;
   if (page === "first") {
-    message += `Дата: ${DateNow}`;
-    message += ` \nІмя замовника ${form[0].name.value} \n`;
-    message += `Номер телефону ${form[0].number.value} \n`;
-    message += `Адреса на яку відправити ${form[0].address.value} \n`;
-    message += `День на який потрібно ${form[0].datetime.value} \n`;
-    message += `<b> \nВибраний пакет: </b>
-\nНазва: ${data.title}
-Текст:${data.text}
-Опис: ${data.description}
-Цін:  ${data.price} доларів
-Ціна за добавлений день: ${data.additional} доларів
+    message += `
+Дата створення замовлення: <i>${DateNow}</i> 
+Імя замовника <i>${form[0].name.value}</i>
+Номер телефону <i>${form[0].number.value}</i>
+Адреса на яку відправити <i>${form[0].address.value}</i>
+День на який потрібно <i>${form[0].datetime.value}</i>
+
+<b>Вибраний пакет:</b>
+Назва: <i>${data.title} </i>
+Текст: <i>${data.text}</i>
+Опис: <i>${data.description}</i>
+Ціна:  <i>${data.price}</i> доларів
+Ціна за добавлений день: <i>${data.additional}</i> доларів
+
+
+
     `;
   } else if (page === "second") {
-    message += ` \nДата: ${DateNow}`;
-    message += `Імя замовника ${form[0].name.value} \n`;
-    message += `Номер телефону ${form[0].number.value} \n`;
-    message += `Почта замовника ${form[0].email.value} \n`;
-    message += `Адреса на яку відправити ${form[0].address.value} \n`;
-    message += `День на який потрібно ${form[0].datetime.value} \n`;
-    message += `\nВибраний пакет: 
-\nНазва: ${data.title}
-Текст:${data.text}
-Ціна:  ${data.price} доларів
-    `;
+    message += `
+Дата створення замовлення: <i>${DateNow}</i> 
+Імя замовника <i>${form[0].name.value}</i>
+Номер телефону <i>${form[0].number.value}</i>
+Почта замовника <i>${form[0].email.value}</i> 
+Адреса на яку відправити <i>${form[0].address.value}</i>
+День на який потрібно <i>${form[0].datetime.value}</i>
+    
+<b>Вибраний пакет:</b>
+Назва: <i>${data.title} </i>
+Текст: <i>${data.text}</i>
+Ціна:  <i>${data.price}</i> доларів
+
+
+
+        `;
   }
 
   const imageElement = document.createElement("img");
@@ -287,12 +297,6 @@ const sendMessageToTelegram = (data, page) => {
   console.log(canvas);
 
   // Convert the data URL to a Blob
-
-  const formData = new URLSearchParams();
-  formData.append("chat_id", CHAT_ID);
-  formData.append("text", message);
-  formData.append("parse_mode", "html");
-
   canvas.toBlob(async (blob) => {
     if (blob) {
       // Create a FormData object and append the necessary data
@@ -305,6 +309,9 @@ const sendMessageToTelegram = (data, page) => {
         const response = await fetch(API_ENDPOINT, {
           method: "POST",
           body: formData,
+        }).then((response) => {
+          sentText();
+          return response;
         });
 
         const data = await response.json();
@@ -315,17 +322,27 @@ const sendMessageToTelegram = (data, page) => {
     }
   }, "image/jpeg");
 
-  fetch(URL_API, {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Message sent:", data);
+  const sentText = () => {
+    const formData = new URLSearchParams();
+    formData.append("chat_id", CHAT_ID);
+    formData.append("text", message);
+    formData.append("parse_mode", "html");
+
+    fetch(URL_API, {
+      method: "POST",
+      body: formData,
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+      .then((response) => {
+        return response;
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Message sent:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 };
 
 const getData = async () => {
