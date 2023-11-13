@@ -54,7 +54,7 @@ const renderCheckboxFlavor = (number) => {
     <div class="Form__popup-flavor-text">
       Choose flavor for fruit head ${index + 1}
     </div>
-    <div class="Form__popup-flavor-block">
+    <div class="Form__popup-flavor-block head${index + 1} ">
       <label>
         <input class="Form__popup-flavor-row text" type="checkbox" />
         <p class="Form__input-text">Fruity mix</p>
@@ -255,6 +255,24 @@ const sendMessageToTelegram = async (
     const form = document.querySelector("form");
     const getCurrentDate = new Date().toISOString().split("T")[0];
 
+    let textFromLabels = "";
+    const checkedInputs = document.querySelectorAll(
+      'input[type="checkbox"]:checked'
+    );
+    const someArr = new Array();
+
+    checkedInputs.forEach((element) => {
+      const label = element.labels[0];
+      const textOfLabel = element.labels[0].children[1].textContent;
+      const parentOfLabel = label.parentElement.classList;
+      someArr.push({ [parentOfLabel[1]]: textOfLabel });
+    });
+    for (const iterator of someArr) {
+      for (const key in iterator) {
+        textFromLabels += `\n${key}: ${iterator[key]}`;
+      }
+    }
+
     //preparing text for post to telegram
 
     let message = `<b>Заявка з сайта! </b>`;
@@ -271,7 +289,11 @@ const sendMessageToTelegram = async (
 Текст: <i>${text}</i>
 Опис: <i>${description}</i>
 Ціна:  <i>${price}</i> доларів
-Ціна за добавлений день: <i>${additional}</i> доларів
+Ціна за добавлений день: <i>${additional}</i> доларів 
+
+<b>Смаки на чашу</b>
+
+${textFromLabels}
       `;
     } else if (page === "second") {
       message += `
@@ -365,7 +387,6 @@ const getData = async () => {
   const formSubmitButton = document.querySelectorAll(".Form__button");
   const inputs = document.querySelectorAll(".Form__field");
   const exitButtons = document.querySelectorAll(".Form__exit-line");
-  const blockSecond = document.querySelector(".Form__block");
   const Data = [];
   let indexOfData = 0;
 
@@ -391,7 +412,6 @@ const getData = async () => {
 
   const changeInputColor = () => {
     inputs.forEach((element) => {
-      console.dir(element);
       element.addEventListener("input", (e) =>
         e.target.value
           ? (element.style.color = `#505050`)
@@ -480,6 +500,7 @@ const getData = async () => {
     console.log("card is not rendered, maybe is not second page");
   }
   try {
+    const blockSecond = document.querySelector(".Form__block");
     const buttonOnSecondPage = document.querySelector(".ChooseHookahs__button");
     buttonOnSecondPage.addEventListener("click", () => {
       openForm(blockSecond);
@@ -510,21 +531,6 @@ const getData = async () => {
     formSubmitButton[0].addEventListener("click", (e) => {
       if (!checkValue(e)) {
         changeBorders();
-      } else {
-        sendMessageToTelegram(dataFormCalculator, "second");
-        console.log("second");
-        blockSecond.classList.remove("step--active");
-        step3.classList.add("step--active");
-      }
-    });
-  } catch {
-    console.log("is not second page");
-  }
-
-  try {
-    formSubmitButton[0].addEventListener("click", (e) => {
-      if (!checkValue(e)) {
-        changeBorders();
         changeClassInDetails();
         return;
       }
@@ -534,6 +540,25 @@ const getData = async () => {
     });
   } catch {
     console.log("is not fist page");
+  }
+  try {
+    const blockSecond = document.querySelector(".Form__block");
+    if (blockSecond) {
+      formSubmitButton[0].addEventListener("click", (e) => {
+        if (!checkValue(e)) {
+          changeBorders();
+        } else {
+          sendMessageToTelegram(dataFormCalculator, "second");
+          console.log("second");
+          blockSecond.classList.remove("step--active");
+          step3.classList.add("step--active");
+        }
+      });
+    } else {
+      return;
+    }
+  } catch {
+    console.log("is not second page");
   }
 };
 

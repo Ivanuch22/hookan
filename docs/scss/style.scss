@@ -685,7 +685,7 @@ body {
     color: #fff;
     border: 3px solid #fff;
     text-align: center;
-    padding: 12px;
+    padding: 12px 23px;
     font-family: "Montserrat";
     font-size: 18px;
     line-height: 22px;
@@ -1907,18 +1907,6 @@ input[type="range"] {
 .Menu__button-wrapper {
   display: flex;
   align-items: center;
-}
-
-@media (max-width: 768px) {
-  .header__communication {
-    position: absolute;
-    right: 29px;
-    top: 100px;
-  }
-
-  .header__logo-block {
-    width: 110px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -3332,7 +3320,7 @@ input[type="range"] {
     padding-right: 20px;
   }
   .header__communication {
-    padding-top: 96px;
+    padding-top: 60px;
   }
   .instagram {
     margin-right: 56px;
@@ -3341,6 +3329,8 @@ input[type="range"] {
     max-width: 92%;
   }
   .firstSection__content-text {
+    left: 10px;
+    right: 10px;
     bottom: 67%;
   }
   .firstSection__description {
@@ -3673,6 +3663,8 @@ input[type="range"] {
   }
   .firstSection__content-text {
     bottom: 40%;
+    left: 10px;
+    right: 10px;
   }
   .Title {
     font-size: 24px;
