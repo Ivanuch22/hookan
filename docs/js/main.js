@@ -158,8 +158,8 @@ const renderCheckboxFlavor = async (number) => {
 
 const renderCards = (data) => {
   const block = document.querySelector(".Package__block");
-  block.innerHTML = data.map((element) => {
-    return `
+  data.map((element) => {
+    const cart = `
     <div class="Package__card">
     <div class="Package__card-block-img">
       <img
@@ -187,6 +187,7 @@ const renderCards = (data) => {
   </div>
   
     `;
+    block.insertAdjacentHTML("beforeend", cart);
   });
 };
 
@@ -238,6 +239,7 @@ const sendMessageToTelegram = (data, page) => {
   const TOKEN = "6619280299:AAGIL6f6uD5nOU1Sjw26zzqvyI0V_fZZKq0";
   const CHAT_ID = "-1002007095666";
   const URL_API = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+  const API_ENDPOINT = `https://api.telegram.org/bot${TOKEN}/sendPhoto`;
 
   const form = document.getElementsByTagName("form");
   const DateNow = new Date().toISOString().split("T")[0];
@@ -270,17 +272,52 @@ const sendMessageToTelegram = (data, page) => {
     `;
   }
 
+  const imageElement = document.createElement("img");
+  imageElement.src = data.img;
+  imageElement.width = 400;
+  imageElement.height = 200;
+
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+
+  canvas.width = imageElement.width;
+  canvas.height = imageElement.height;
+
+  context.drawImage(imageElement, 0, 0);
+  console.log(canvas);
+
+  // Convert the data URL to a Blob
+
   const formData = new URLSearchParams();
   formData.append("chat_id", CHAT_ID);
   formData.append("text", message);
   formData.append("parse_mode", "html");
 
+  canvas.toBlob(async (blob) => {
+    if (blob) {
+      // Create a FormData object and append the necessary data
+      const formData = new FormData();
+      formData.append("chat_id", CHAT_ID);
+      formData.append("photo", blob, "photo.jpg");
+
+      // Send the image to Telegram using fetch
+      try {
+        const response = await fetch(API_ENDPOINT, {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        console.log("Image sent to Telegram:", data);
+      } catch (error) {
+        console.error("Error sending image to Telegram:", error);
+      }
+    }
+  }, "image/jpeg");
+
   fetch(URL_API, {
     method: "POST",
     body: formData,
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
   })
     .then((response) => response.json())
     .then((data) => {
@@ -332,15 +369,6 @@ const getData = async () => {
     } else {
       removeClassOnSubbmitButton();
     }
-    // inputs.forEach((element) => {
-    //   if (element.value) {
-    //     formSubmitButton.forEach((element) => {
-    //       element.classList.add("onActive");
-    //     });
-    //   } else {
-    //     removeClassOnSubbmitButton();
-    //   }
-    // });
   };
 
   const changeInputColor = () => {
@@ -477,6 +505,7 @@ const getData = async () => {
         );
       } else {
         sendMessageToTelegram(dataFormCalculator, "second");
+        console.log("second");
         blockSecond.classList.remove("step--active");
         step3.classList.add("step--active");
       }
