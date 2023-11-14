@@ -1,5 +1,6 @@
 @import url("nuleStyle.scss");
 @import url("globalStyle.scss");
+
 #card-block {
   scroll-behavior: smooth;
 }
@@ -1150,6 +1151,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding-bottom: 180px;
+    flex-wrap: wrap;
   }
   &__title {
     text-align: center;

@@ -22,5 +22,37 @@
         "description": "3 complete hookah set with all needed accessories",
         "price": 160, 
         "additional": 70
+    },
+    {
+        "img": "images/secondCardImg.jpg",
+        "title": "2 hookah",
+        "text": "+ 6 tobacco filled fruit heads",
+        "description": "2 complete hookah set with all needed accessories",
+        "price": 120,
+        "additional": 50
+    },
+    {
+        "img": "images/thirstCardImg.jpg",
+        "title": "3 hookah",
+        "text": "+ 9 tobacco filled fruit heads",
+        "description": "3 complete hookah set with all needed accessories",
+        "price": 160, 
+        "additional": 70
+    },
+    {
+        "img": "images/secondCardImg.jpg",
+        "title": "2 hookah",
+        "text": "+ 6 tobacco filled fruit heads",
+        "description": "2 complete hookah set with all needed accessories",
+        "price": 120,
+        "additional": 50
+    },
+    {
+        "img": "images/thirstCardImg.jpg",
+        "title": "3 hookah",
+        "text": "+ 9 tobacco filled fruit heads",
+        "description": "3 complete hookah set with all needed accessories",
+        "price": 160, 
+        "additional": 70
     }
 ]
